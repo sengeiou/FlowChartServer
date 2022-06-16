@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket</title>
+
+</head>
+<body>
+<div id="div" style="width: 100%">
+
+</div>
+</body>
+<script>
+    var success = 0;
+
+    function WebSocketTest(i) {
+        if ("WebSocket" in window) {
+            var x = 100;//上限
+            var y = 0; //下限
+            // 打开一个 web socket
+            var ws = new WebSocket("ws://localhost:1024/webSocket/3b631c8c2de44c9f93a4f1ddb3ca4c55/" +i);
+            ws.onopen = function () {
+                // Web Socket 已连接上，使用 send() 方法发送数据
+                let json = {
+                    "type": 1,
+                    "data": "客户端来了"
+                }
+                ws.send(JSON.stringify(json));
+                success++;
+                console.log("成功连接个数：" + success);
+                //先保存div中原来的html
+                var html = document.getElementById("div").innerHTML;
+                //再跟你想追加的代码加到一起插入div中
+                document.getElementById("div").innerHTML = html + "<div style='margin-left: 20px;float: left'>" + success + "</div>";
+            };
+            ws.onmessage = function (evt) {
+                var received_msg = evt.data;
+            };
+        } else {
+            // 浏览器不支持 WebSocket
+            alert("您的浏览器不支持 WebSocket!");
+        }
+    }
+
+    for (let i = 0; i < 10; i++) {
+        console.log(i);
+        WebSocketTest(i);
+    }
+
+</script>
+</html>

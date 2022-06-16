@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flowchart.mapper.OnlineTemplateMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.flowchart.entity.OnlineTemplateBean">
+        <id column="id" property="id" />
+        <result column="temp_name" property="tempName" />
+        <result column="temp_file_name" property="tempFileName" />
+        <result column="temp_img_path" property="tempImgPath" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, temp_name, temp_file_name, temp_img_path, create_time, update_time
+    </sql>
+
+</mapper>
